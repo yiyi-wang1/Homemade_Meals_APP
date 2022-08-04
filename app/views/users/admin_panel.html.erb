@@ -20,11 +20,15 @@
 
     <div>
         <% if (@user.is_cook) %>
-            <%= button_to "Create a new Meal", meal_path, method: :get, class: "btn btn-outline-primary my-3"%>
+            <%= button_to "Create a new Meal", new_meal_path, method: :get, class: "btn btn-outline-primary my-3"%>
             <div class="card" id="user_container">
                 <h5>Current Meals</h5>
-                <%@meals = @user.meals%>
-                <div class="d-flex flex-column">
+                <br>
+                <%if(@user.meals.count == 0) %>
+                    <p>You don't have any meals yet!</p>
+                <% else %>
+                    <div class="d-flex flex-column">
+                    <%@meals = @user.meals%>
                     <% @meals.each do |meal| %>
                         <div class="card m-3 py-3" style="width: 30rem;">
                             <img src="<%= meal.img_url%>" class="card-img-top " alt="" style="width: 20rem; height: 10rem">
@@ -36,10 +40,9 @@
                             </div>
                         </div>
                     <% end %>
-                </div>
+                    </div>
+                <% end %>
             </div>
-
-        
         <%else%>
             <div class="container d-flex flex-column">
             <div class="d-flex flex-row justify-content-center">
