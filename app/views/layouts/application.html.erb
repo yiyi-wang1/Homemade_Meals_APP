@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
            <div class="container-fluid d-flex">
             <a class="m-3" alt="brand-logo" href="<%= root_path %>">
-            <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo'%> 
+            <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo', style:"width: 3rem"%> 
             </a>
             <a class="navbar-brand fw-bold ml-5 fw-bold" href="<%= root_path %>">Delish</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggler" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,23 +31,38 @@
 
             <div class="collapse navbar-collapse" id="navtoggler">
               <ul class="navbar-nav ms-auto">
+                <% if user_signed_in? %>
+                <li class="nav-item m-1">
+                  <a class="nav-link text-dark" href="<%= meals_path %>">Meals</a>
+              </li>
+                <li class="nav-item m-1">
+                  <a class="nav-link" href="<%= user_path(current_user.id) %>">Hello <%= current_user.username %> </a>
+              </li>
+              <li class="nav-item m-1">
+                <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
+              </li>
+                <% else %>
                 <%# Sign In & Sign Up %>
                 <li class="nav-item">
-                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%=  %>">Sign In</a>
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_session_path %>">Sign In</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%=  %>">Sign Up</a>
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_path %>">Sign Up</a>
                 </li>
+                <% end %>
               </ul>
             </div>
           </div>
         </nav>
       </div>
+
+      <div class="container">
       <% flash.each do |type, message| %>
       <div class="alert alert-info" role="alert">
         <%= type + "------" + message %>
       </div>
     <% end %>
+      </div>
 
     <%= yield %>
 
@@ -55,7 +70,7 @@
         <div class="container text-center">
             <div class="row d-flex justify-content-center p-2">
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                            <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo-footer', class: "mt-3"%> 
+                            <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo-footer', class: "mt-3", style:"width: 3rem"%> 
                     <h2 class="text-light fw-bold mt-3">Delish</h2>
                     
                 </div>
