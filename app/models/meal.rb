@@ -9,8 +9,9 @@ class Meal < ApplicationRecord
 
     has_many :orders, dependent: :nullify
 
-    def average_rating
-        self.reviews.average('rating')
-    end
+    # def average_rating
+    #     Meal.joins(:reviews).average
+    #     self.reviews.average(:rating)
+    # end
 
 end
