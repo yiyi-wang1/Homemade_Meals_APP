@@ -45,11 +45,11 @@
             </div>
         <%else%>
             <div class="container d-flex flex-column">
-            <div class="d-flex flex-row justify-content-center">
-                <h2><%=@user.username%>'s Review</h2>
-            </div>
-            <%@reviews = @user.reviews%>
-            <div class="row row-cols-2 ms-3">
+                <div class="d-flex flex-row justify-content-center">
+                    <h2><%=@user.username%>'s Review</h2>
+                </div>
+                <%@reviews = @user.reviews%>
+                <div class="row row-cols-2 ms-3">
                     <% @reviews.each do |review| %>
                         <div class="card col m-3 py-3" style="width: 25rem;">
                             <div class="card-body">
@@ -63,6 +63,23 @@
                                 <p class="card-text text-truncate"><%= review.body%></p>
                                 <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Commented at<%= comment.created_at%> </small>
                                 <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="container d-flex flex-column">
+                <div class="d-flex flex-row justify-content-center">
+                    <h2><%=@user.username%>'s Order</h2>
+                </div>
+                <%@orders = @user.orders%>
+                <div class="row row-cols-2 ms-3">
+                    <% @orders.each do |order| %>
+                        <div class="card col m-3 py-3" style="width: 25rem;">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="<%=order_path(order)%>" class="text-decoration-none"><%= order.id%></a></h5>
+                                <hr>
                             </div>
                         </div>
                     <% end %>
