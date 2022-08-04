@@ -25,7 +25,7 @@ class User < ApplicationRecord
             end
 
             if reviews_number != 0
-                ratings_sum/reviews_number
+                avg_rating = ((ratings_sum).to_f/(reviews_number).to_f).round(2)
             else  
                 0
             end
