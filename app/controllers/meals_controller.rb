@@ -51,4 +51,7 @@ before_action :find_meal, only: [:edit, :update]
     params.require(:meal).permit(:title, :ingredients, :price)
   end
 
+  def find_meal
+    @meal = Meal.find params[:id]
+  end
 end
