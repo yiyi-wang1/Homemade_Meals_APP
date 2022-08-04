@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <p>Order Information</p>
+        <p><strong>Recipient Name: </strong> <%=@order.recipient%></p>
+        <p><strong>Address: </strong> <%=@order.address%></p>
+        <p><strong>Created at: </strong> <%=@order.created_at%></p>
+    </div>
+    <% @meal = @order.meal%>
+    <div class="card col m-3 py-3" style="width: 25rem;">
+        <img src="<%= @meal.img_url%>" class="card-img-top " alt="" style="width: 22rem; height: 15rem">
+        <div class="card-body">
+            <h5 class="card-title"><a href="<%=meal_path(@meal)%>" class="text-decoration-none"><%= @meal.title%></a></h5>
+            <p class="card-text text-truncate"><%= @meal.description%></p>
+        </div>
+    </div>
+</div>
