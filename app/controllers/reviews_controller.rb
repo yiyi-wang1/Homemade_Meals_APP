@@ -15,7 +15,10 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-
+        @review = Review.find params[:id]
+        @review.destroy
+        flash[:alert] = "Review Deleted"
+        redirect_to show_admin_panel_user_path(current_user)
     end
 
     def find_meal
