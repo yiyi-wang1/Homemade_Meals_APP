@@ -22,10 +22,10 @@
      <div class="container-fluid m-2" id="banner">
         <nav class="navbar navbar-expand-lg navbar-light">
            <div class="container-fluid d-flex">
-            <a class="m-3" alt="brand-logo" href="<%= root_path %>">
+            <a class="m-3" alt="brand-logo" href="<%= main_app.root_path %>">
             <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo', style:"width: 3rem"%> 
             </a>
-            <a class="navbar-brand fw-bold ml-5 fw-bold" href="<%= root_path %>">Delish</a>
+            <a class="navbar-brand fw-bold ml-5 fw-bold" href="<%= main_app.root_path %>">Delish</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggler" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,21 +34,21 @@
               <ul class="navbar-nav ms-auto">
                 <% if user_signed_in? %>
                 <li class="nav-item m-1">
-                  <a class="nav-link text-dark" href="<%= meals_path %>">Meals</a>
+                  <a class="nav-link text-dark" href="<%= main_app.meals_path %>">Meals</a>
               </li>
                 <li class="nav-item m-1">
-                  <a class="nav-link" href="<%= show_admin_panel_user_path(current_user.id) %>">Hello <%= current_user.username %> </a>
+                  <a class="nav-link" href="<%= main_app.show_admin_panel_user_path(current_user.id) %>">Hello <%= current_user.username %> </a>
               </li>
               <li class="nav-item m-1">
-                <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
+                <%= button_to "Log out", main_app.session_path, method: :delete, class: "btn btn-danger" %>
               </li>
                 <% else %>
                 <%# Sign In & Sign Up %>
                 <li class="nav-item">
-                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_session_path %>">Sign In</a>
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= main_app.new_session_path %>">Sign In</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= new_user_path %>">Sign Up</a>
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= main_app.new_user_path %>">Sign Up</a>
                 </li>
                 <% end %>
               </ul>

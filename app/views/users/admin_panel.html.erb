@@ -2,6 +2,7 @@
 <h2 class="text-center"><%=@user.username%>'s Admin Panel</h2>
 
 <div class="d-flex flex-row justify-content-around">
+    <%= link_to "#{Notification.unread_count(current_user)} Notifications", notifications_path%>
 
     <div class="" id="user_profile_container">
         <img src="<%@user.profile_img_url%>">
@@ -50,9 +51,33 @@
                 <div class="d-flex flex-row justify-content-center">
                     <h2><%=@user.username%>'s Review</h2>
                 </div>
-                <%@reviews = @user.reviews%>
+
+                <%@approved_reviews = @user.reviews.select{|x| x.is_approved}%>
+                <%@pending_reviews = @user.reviews.select{|x| !x.is_approved}%>
                 <div class="row row-cols-2 ms-3">
-                    <% @reviews.each do |review| %>
+                    <p>Approved Reviews</p>
+                    <% @approved_reviews.each do |review| %>
+                        <div class="card col m-3 py-3" style="width: 25rem;">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="<%=meal_path(review.meal)%>" class="text-decoration-none"><%= review.meal.title%></a></h5>
+                                <hr>
+                                <span><strong>Rating: </strong>
+                                    <%review.rating.times do %>
+                                        ★
+                                    <% end %>
+                                </span>
+                                <p class="card-text text-truncate"><%= review.body%></p>
+                                <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Posted at<%= review.created_at%> </small>
+                                <% if can? :crud, review %>
+                                    <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
+                                <% end %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="row row-cols-2 ms-3">
+                    <p>Pending Reviews</p>
+                    <% @pending_reviews.each do |review| %>
                         <div class="card col m-3 py-3" style="width: 25rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="<%=meal_path(review.meal)%>" class="text-decoration-none"><%= review.meal.title%></a></h5>
