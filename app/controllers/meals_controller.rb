@@ -21,6 +21,7 @@ before_action :find_meal, only: [:edit, :update]
 
     # top 10 rated cooks query needs to be changed
     @cooks = User.where(is_cook: :true).limit(10)
+    # @cooks = User.joins(:meals).joins(:reviews).where(is_cook: :true).order(‘avg(reviews.rating)’).limit(10)
   end
 
   def show

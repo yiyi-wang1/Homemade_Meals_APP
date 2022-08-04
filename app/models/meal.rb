@@ -7,8 +7,9 @@ class Meal < ApplicationRecord
     validates :ingredients, presence: true
     validates :price, presence: true, numericality: { :greater_than_or_equal_to => 0 }
 
-    def average_rating
-        self.reviews.average('rating')
-    end
+    # def average_rating
+    #     Meal.joins(:reviews).average
+    #     self.reviews.average(:rating)
+    # end
 
 end
