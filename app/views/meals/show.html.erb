@@ -14,7 +14,8 @@
                 <li class="list-group-item">Cook: <%= @meal.user.username %></li> <%# this could link to user show page of the cook #%> 
               </ul>
               <div class="card-body">
-                <a href="<%=new_meal_order_path(@meal)%>" class="btn btn-warning">Order Now</a>
+                <a href="#" class="btn btn-warning">Order Now</a>
+                <%#  this should be button_to "Order Now", xx path, after we add order model #%> 
               </div>
         </div>
     </div>
@@ -25,29 +26,19 @@
         
         <% if @review.errors.any? %> 
             <% @review.errors.full_messages.each do |msg| %> 
-                <p><%= msg %></p>
+                <p><%= msg %> </p>
             <% end %> 
         <% end %> 
         
         <%= form_with(model:[@meal, @review]) do |form|%>
-            
-
-            <div class="mb-3">
-                <fieldset class="starability-basic">
-                  
-                  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
-                  <input type="radio" id="first-rate1" name="rating" value="1" />
-                  <label for="first-rate1" title="Terrible">1 star</label>
-                  <input type="radio" id="first-rate2" name="rating" value="2" />
-                  <label for="first-rate2" title="Not good">2 stars</label>
-                  <input type="radio" id="first-rate3" name="rating" value="3" />
-                  <label for="first-rate3" title="Average">3 stars</label>
-                  <input type="radio" id="first-rate4" name="rating" value="4" />
-                  <label for="first-rate4" title="Very good">4 stars</label>
-                  <input type="radio" id="first-rate5" name="rating" value="5" />
-                  <label for="first-rate5" title="Amazing">5 stars</label>
-                </fieldset>
-              </div>
+        <div class="mb-3">
+            <%=form.label :rating%>
+            <br>
+            <% 5.times do |i|%>
+                <%=form.radio_button :rating, i + 1%>
+                <%=form.label :rating, i + 1%>
+            <% end %>
+          </div>    
 
             <div class="mb-3">
                 <%= form.label :body, "Review", class: "form-label" %>
@@ -59,9 +50,8 @@
     </div>
 
     <div class="col-10 offset-1 mt-5">
-        <h3 class="mb-4">All Reviews</h3>
-        <% @meal.reviews.each do |review|%>
-            <p>Rating: <%= review.rating %></p> 
+        <h3>All Reviews</h3>
+        <% @reviews.each do |review|%>
             <p class="starability-result" data-rating="<%= review.rating %>"></p>
             <p>Review: <%= review.body %></p>
             <p>By: <%= review.user.username %></p>
