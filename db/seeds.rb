@@ -7,12 +7,26 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
+
+
 User.destroy_all
 Meal.destroy_all
 Review.destroy_all
 
 DEFAULT_PASSWORD = "123"
 INGREDIENTSARR = ["Bacon", "Beef fat", "Butter", "Chicken fat", "Cocoa butter", "Coconut or coconut oil", "Hydrogenated fats and oils", "Lard", "Palm or palm kernel oil", "Baking powder", "Baking soda", "Brine", "Celery salt", "Garlic salt", "Brown sugar", "Cane juice extract", "Corn syrup", "Honey", "Invert sugar", "Lactose", "Liquid sugar", "Maltos", "Chicken", "Pork", "Lamb", "Shrimp", "Fish", "Peanut", "Bea", "Banana", "Apple", "Ginger"]
+
+COOK_IMAGES = [
+    "WWWW.COM",
+    "WWW.2.COM",
+]
+
+MEALS_IMAGES = [
+    
+]
+
+
+
 
 20.times do |n|
     username = Faker::Name.first_name
@@ -32,7 +46,7 @@ users = User.all
     meal = Meal.create(
         title: Faker::Food.dish,
         description: Faker::Food.description,
-        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(","),
+        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(" ,"),
         img_url: "https://picsum.photos/200",
         price: Faker::Commerce.price,
         user: users.sample
