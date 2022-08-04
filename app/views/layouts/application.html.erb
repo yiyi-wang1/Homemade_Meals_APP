@@ -5,15 +5,48 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
   </head>
 
   <body>
+     <div class="container-fluid" id="banner">
+        <nav class="navbar navbar-expand-lg navbar-light">
+           <div class="container-fluid d-flex">
+            <a class="m-2" alt="brand-logo" href="<%= root_path %>">
+            <%= image_tag "https://img.freepik.com/free-vector/spoon-fork-restaurant-dinner-dish-menu-logo-design-illustration_384344-2008.jpg?w=740&t=st=1659571013~exp=1659571613~hmac=2691bc52483efd3d93adf9821733d82c1711aee0e3aa5c97a8761a7619e7d710", id: 'logo'%> 
+            </a>
+            <a class="navbar-brand fw-bold ml-5 fw-bold" href="<%= root_path %>">Company Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggler" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navtoggler">
+              <ul class="navbar-nav ms-auto">
+                <%# Sign In & Sign Up %>
+                <li class="nav-item">
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%=  %>">Sign In</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%=  %>">Sign Up</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
     <%= yield %>
 
-
+   <footer>
+   
+   </footer>
+   <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   </body>
 </html>
