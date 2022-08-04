@@ -45,7 +45,8 @@ users = User.all
                 rating: rating,
                 body: Faker::Lorem.paragraph(sentence_count: 5),
                 meal: meal,
-                user: users.sample
+                user: users.sample,
+                is_approved: true
             )
         end
     end

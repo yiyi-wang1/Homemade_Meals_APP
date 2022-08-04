@@ -37,7 +37,7 @@
                   <a class="nav-link text-dark" href="<%= meals_path %>">Meals</a>
               </li>
                 <li class="nav-item m-1">
-                  <a class="nav-link" href="<%= user_path(current_user.id) %>">Hello <%= current_user.username %> </a>
+                  <a class="nav-link" href="<%= show_admin_panel_user_path(current_user.id) %>">Hello <%= current_user.username %> </a>
               </li>
               <li class="nav-item m-1">
                 <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>

@@ -51,7 +51,7 @@ before_action :authenticate_user!, except: [:show, :index]
 
   private
     def meal_params
-      params.require(:meal).permit(:title, :ingredients, :price)
+      params.require(:meal).permit!
     end
 
     def find_meal

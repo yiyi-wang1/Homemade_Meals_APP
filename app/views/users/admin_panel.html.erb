@@ -63,7 +63,7 @@
                                     <% end %>
                                 </span>
                                 <p class="card-text text-truncate"><%= review.body%></p>
-                                <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Commented at<%= comment.created_at%> </small>
+                                <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Posted at<%= review.created_at%> </small>
                                 <% if can? :crud, review %>
                                     <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
                                 <% end %>
