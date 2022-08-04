@@ -61,5 +61,4 @@ before_action :authenticate_user!, except: [:show, :index]
     # def authorize_user!
     #   redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @meal)
     # end
-  end
 end
