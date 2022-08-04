@@ -1,0 +1,39 @@
+<div class="row mx-5 my-5">
+    <div class="col-2 me-3 index-cooks-container">
+        <h2>Top 10 Rated Cooks</h2>
+        <% @cooks.each do |cook| %> 
+            <div class="card mb-3">
+                <%= image_tag cook.profile_img_url, class:"card-img-top" %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= cook.username %></h5>
+                </div>
+            </div>
+        <% end %> 
+    </div>
+
+    <div class="flex-container col-8 offset-1">
+         
+        <% @meals.each do |meal| %>
+            <div class="item-container">
+                <div class="card mb-3 index-card">
+                    <%= image_tag meal.img_url, class:"card-img-top" %>
+                    <div class="card-body">
+                        <div class="mb-1">
+                        <%= link_to meal.title, meal_path(meal), class:"title-list-item"%>
+                        </div>
+                        <div class="mb-3 index-chef">
+                         Cook: <%= meal.user.username %>
+                        </div>
+                        <div>
+                       <%= meal.ingredients %>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        </div>
+
+
+</div>
+
+

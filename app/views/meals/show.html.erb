@@ -1,0 +1,57 @@
+<div class="row mx-5 my-5">
+    <div class="show-image-container col-5 offset-1 me-3">
+        <%= image_tag @meal.img_url, class:"show-image" %>
+    </div>
+    <div class="card col-5 ms-3">
+        <div class="card-body">
+            <div class="card-body">
+                <h5 class="card-title"><%= @meal.title %></h5>
+                <p class="card-text"><%= @meal.description %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Ingredients: <%= @meal.ingredients %></li>
+                <li class="list-group-item">Price: <%= @meal.price %></li>
+                <li class="list-group-item">Cook: <%= @meal.user.username %></li> <%# this could link to user show page of the cook #%> 
+              </ul>
+              <div class="card-body">
+                <a href="#" class="btn btn-warning">Order Now</a>
+                <%#  this should be button_to "Order Now", xx path, after we add order model #%> 
+              </div>
+        </div>
+    </div>
+
+
+    <div class="col-10 offset-1 mt-5">
+        <h3>Leave a Review</h3>
+        
+        <% if @review.errors.any? %> 
+            <% @review.errors.full_messages.each do |msg| %> 
+                <p><%= msg %> </p>
+            <% end %> 
+        <% end %> 
+        
+        <%= form_with(model:[@meal, @review]) do |form|%>
+            <div class="mb-3">
+                <%= form.label :rating, class: "form-label"%>
+                <br>
+                <%= form.text_field :rating, class: "form-control"%>
+            </div>
+            <div class="mb-3">
+                <%= form.label :body, "Review", class: "form-label" %>
+                <br>
+                <%= form.text_area :body, cols: 50, rows: 5, class: "form-control" %>
+            </div>
+            <%= form.submit class: "btn btn-info mb-3"%>
+        <% end %>
+    </div>
+
+    <div class="col-10 offset-1 mt-5">
+        <h3>All Reviews</h3>
+        <% @meal.reviews.each do |review|%>
+            <p>Rating: <%= review.rating %></p> 
+            <p>Review: <%= review.body %></p>
+            <p>By: <%= review.user.username %></p>
+        <% end %> 
+    </div>
+
+</div>
