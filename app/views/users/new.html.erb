@@ -1,0 +1,31 @@
+<h1>Sign Up</h1>
+
+<% if @user.errors.any? %>
+    <p> <%= @user.errors.full_massage.join(',') %> </p>
+<% end %>
+
+<div>
+<%= form_with(model: @user) do |f| %>
+    <div>
+        <%= f.label :username%>
+        <%= f.text_field :username%>
+    </div>
+    <div>
+        <%= f.label :email%>
+        <%= f.text_field :email%>
+    </div>
+    <div>
+        <%= f.label :profile_img_url, "Profile image Url"%>
+        <%= f.text_field :profile_img_url%>
+    </div>
+    <div>
+        <%= f.label :password%>
+        <%= f.password_field :password%>
+    </div>
+    <div>
+        <%= f.label :password_confirmation%>
+        <%= f.password_field :password_confirmation%>
+    </div>
+    <%= f.submit 'Sign up'%>
+<% end %>
+</div>
