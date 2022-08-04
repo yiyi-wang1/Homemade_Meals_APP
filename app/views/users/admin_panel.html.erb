@@ -35,8 +35,10 @@
                             <div class="card-body">
                                 <h5 class="card-title"><a href="<%=meal_path(meal)%>" class="text-decoration-none"><%= meal.title%></a></h5>
                                 <p class="card-text text-truncate"><%= meal.description%></p>
-                                <%= button_to "Edit", edit_meal_path(meal), method: :get, class: "btn btn-outline-primary my-3"%>
-                                <%= button_to "Delete", meal_path(meal), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
+                                <% if can? :crud, meal %>
+                                    <%= button_to "Edit", edit_meal_path(meal), method: :get, class: "btn btn-outline-primary my-3"%>
+                                    <%= button_to "Delete", meal_path(meal), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
+                                <% end %>
                             </div>
                         </div>
                     <% end %>
@@ -62,7 +64,9 @@
                                 </span>
                                 <p class="card-text text-truncate"><%= review.body%></p>
                                 <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Commented at<%= comment.created_at%> </small>
-                                <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
+                                <% if can? :crud, review %>
+                                    <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-outline-primary me-2"%>
+                                <% end %>
                             </div>
                         </div>
                     <% end %>

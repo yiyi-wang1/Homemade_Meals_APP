@@ -9,7 +9,7 @@
             <div class="card-body p-5">
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
                     <% if @user.errors.any? %>
-                        <p> <%= @user.errors.full_massage.join(',') %> </p>
+                        <p> <%= @user.errors.full_messages.join(',') %> </p>
                     <% end %>
                     <div class="form-outline mb-4">
                         <%= form_with(model: @user) do |f| %>
@@ -32,6 +32,11 @@
                             <div class="form-outline mb-4">
                                 <%= f.label :password_confirmation, class: "form-label"%>
                                 <%= f.password_field :password_confirmation, class: "form-control form-control-lg"%>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <%= f.label :is_cook, 'Sign up as: ', class:"form-check-label"%>
+                                <%= radio_button_tag(:is_cook, "true", params[:is_cook].eql?("true") )  %><strong>Cook</strong>
+                                <%= radio_button_tag(:is_cook, "false", true)%><strong>Customer</strong>
                             </div>
                             <div class="d-flex justify-content-center">
                             <%= f.submit 'Sign up', class:"btn btn-primary btn-block btn-lg gradient-custom-4 text-body"%>
