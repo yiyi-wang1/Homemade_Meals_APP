@@ -14,8 +14,7 @@
                 <li class="list-group-item">Cook: <%= @meal.user.username %></li> <%# this could link to user show page of the cook #%> 
               </ul>
               <div class="card-body">
-                <a href="#" class="btn btn-warning">Order Now</a>
-                <%#  this should be button_to "Order Now", xx path, after we add order model #%> 
+                <a href="<%=new_meal_order_path(@meal)%>" class="btn btn-warning">Order Now</a>
               </div>
         </div>
     </div>
