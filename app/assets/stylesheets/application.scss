@@ -21,10 +21,10 @@
 }
  
  #logo, #logo-footer {
-    width: 3rem;
+    width: 3rem !important;
  }
 
-//  #hero {
+/* //  #hero {
 //    background-image: url(https://images.pexels.com/photos/1095550/pexels-photo-1095550.jpeg?cs=srgb&dl=pexels-daria-shevtsova-1095550.jpg&fm=jpg);
 //    background-size: cover;
 //    width: 100%;
@@ -36,7 +36,7 @@
 //     padding-left: 10em;
 //     padding-right: 10em;
 //     padding-bottom: 3em
-// }
+// } */
 
 #logo-footer {
    filter: invert(100%);
