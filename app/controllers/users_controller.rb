@@ -8,7 +8,13 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new params.require(:user).permit(:username, :email, :profile_img_url, :password, :password_confirmation)
+        if params[:is_cook] == 'true'
+            @user = User.new params.require(:user).permit(:username, :email, :profile_img_url, :password, :password_confirmation)
+            @user.is_cook = true
+        elsif params[:is_cook] == 'false'
+            @user = User.new params.require(:user).permit(:username, :email, :profile_img_url, :password, :password_confirmation)
+            @user.is_cook = false
+        end
         if @user.save
             session[:user_id] = @user.id
             flash.notice = 'Signed up!'
