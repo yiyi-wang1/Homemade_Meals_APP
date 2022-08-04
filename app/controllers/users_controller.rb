@@ -1,13 +1,20 @@
 class UsersController < ApplicationController
     before_action :get_user, except: [:new, :create]
-    # before_action :authorize_user!, only: [:admin_panel]
+    before_action :authenticate_user!, only: [:admin_panel]
+    before_action :authorize_user!, only: [:admin_panel]
     
     def new
         @user = User.new
     end
 
     def create
-        @user = User.new params.require(:user).permit(:username, :email, :profile_img_url, :password, :password_confirmation)
+        if params[:is_cook] == 'true'
+            @user = User.new params.require(:user).permit(:username, :email, :profile_img_url, :password, :password_confirmation)
+            @user.is_cook = true
+        elsif params[:is_cook] == 'false'
+            @user = User.new params.require(:user).permit(:username, :email, :profile_img_url, :password, :password_confirmation)
+            @user.is_cook = false
+        end
         if @user.save
             session[:user_id] = @user.id
             flash.notice = 'Signed up!'

@@ -6,10 +6,13 @@ Rails.application.routes.draw do
 
   resources :meals do
     resources :reviews
+    resources :orders, only:[:create, :new]
   end
   root "welcome#index"
   resources :users, only:[:create, :new, :show]
   resource :session, only: [:new, :create, :destroy]
   get 'users/:id/admin_panel', to: 'users#admin_panel', as: :show_admin_panel_user
+
+resources :orders, only:[:show]
 
 end

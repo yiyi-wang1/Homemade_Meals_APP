@@ -1,5 +1,7 @@
 class MealsController < ApplicationController
 before_action :find_meal, only: [:edit, :update]
+before_action :authenticate_user!, except: [:show, :index]
+# before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def new
     @meal = Meal.new
@@ -48,11 +50,16 @@ before_action :find_meal, only: [:edit, :update]
   end
 
   private
-  def meal_params
-    params.require(:meal).permit(:title, :ingredients, :price)
-  end
+    def meal_params
+      params.require(:meal).permit(:title, :ingredients, :price)
+    end
 
-  def find_meal
-    @meal = Meal.find params[:id]
+    def find_meal
+      @meal = Meal.find params[:id]
+    end
+
+    # def authorize_user!
+    #   redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @meal)
+    # end
   end
 end
