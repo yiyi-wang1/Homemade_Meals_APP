@@ -51,10 +51,23 @@
     <div class="col-10 offset-1 mt-5">
         <h3>All Reviews</h3>
         <% @reviews.each do |review|%>
-            <p class="starability-result" data-rating="<%= review.rating %>"></p>
-            <p>Review: <%= review.body %></p>
-            <p>By: <%= review.user.username %></p>
-            <p class="text-muted mb-4"><small>Posted <%= time_ago_in_words(review.created_at) %> ago </small></p>
+            <% if(review.is_approved) %>
+                <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                <p>Review: <%= review.body %></p>
+                <p>By: <%= review.user.username %></p>
+                <p class="text-muted mb-4"><small>Posted <%= time_ago_in_words(review.created_at) %> ago </small></p>
+            <% else %>
+                <div>
+                    <% if can? :crud, @meal %>
+                        <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                        <p>Review: <%= review.body %></p>
+                        <p>By: <%= review.user.username %></p>
+                        <p class="text-muted mb-4"><small>Posted <%= time_ago_in_words(review.created_at) %> ago </small></p>
+                        <%= button_to "Approve", meal_review_path(@meal, review), method: :patch%>
+                    <% end %>
+                </div>
+            <% end %>
+
         <% end %> 
     </div>
 
