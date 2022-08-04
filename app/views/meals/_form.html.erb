@@ -1,0 +1,25 @@
+<%= form_with model: @meal, data:{ turbo:false } do |form| %>
+  <% if @meal.errors.any? %>
+  <div class="alert alert-danger">
+    <h5><%= pluralize(@meal.errors.count, "error") %> prohibited this meal from being saved:</h5>
+    <ul class="m-0">
+    <% @meal.errors.each do |error|%>
+      <li><%= error.full_message%></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="mb-4">
+    <%= form.label :title %>
+    <%= form.text_field :title, class:"form-control" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :ingredients %>
+    <%= form.text_area :ingredients, cols:50, rows: 5, class:"form-control"%>
+  </div>
+  <div class="mb-4">
+    <%= form.label :price %>
+    <%= form.number_field :price, class:"form-control" %>
+  </div>
+    <%= form.submit class:"btn btn-outline-primary" %>
+<% end %>
