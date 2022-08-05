@@ -15,7 +15,6 @@ Review.destroy_all
 Order.destroy_all
 
 DEFAULT_PASSWORD = "123"
-INGREDIENTSARR = ["Bacon", "Beef fat", "Butter", "Chicken fat", "Cocoa butter", "Coconut or coconut oil", "Hydrogenated fats and oils", "Lard", "Palm or palm kernel oil", "Baking powder", "Baking soda", "Brine", "Celery salt", "Garlic salt", "Brown sugar", "Cane juice extract", "Corn syrup", "Honey", "Invert sugar", "Lactose", "Liquid sugar", "Maltos", "Chicken", "Pork", "Lamb", "Shrimp", "Fish", "Peanut", "Bea", "Banana", "Apple", "Ginger"]
 
 COOK_IMAGES = [
     'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',#1
@@ -81,7 +80,7 @@ users = User.all
 INGREDIENT_NUM = 20
 INGREDIENT_NUM.times do
     Ingredient.create(
-        name: Faker::Food.ingredient
+        name: Faker::Food.ingredient.downcase
     )
 end
 ingredients = Ingredient.all
