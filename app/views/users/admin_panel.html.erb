@@ -1,14 +1,18 @@
 
 <div class="container mt-5">
 
+<div class="d-flex flex-row justify-content-around">
+    <%= link_to "#{Notification.unread_count(current_user)} Notifications", notifications_path%>
     <div class="container">
         <h2 class="text-center fw-bold"><%=@user.username%>'s Admin Panel</h2>  
     </div>
 
     <div class="d-flex flex-row justify-content-around">
 
+
         <div class="card p-4 m-2" id="user_profile_container" style="width: 20em;">
             <img src="<%= @user.profile_img_url%>" >
+
             <div id="user_profile_infomation">
                 <p><strong>Name: </strong><%=@user.username%></p>
                 <p><strong>Email: </strong><%=@user.email%></p>
@@ -18,7 +22,7 @@
                 <% if(@user.reviews) %>
                     <p><strong>Reviews Number: </strong><%=@user.reviews.count%></p>
                 <% end %>
-                <% if @user.is_cook%>
+                <% if (@user.is_cook)%>
                 <%= button_to "Create a New Meal", new_meal_path, method: :get, class: "btn btn-dark my-3"%>
                 <% end %>
             </div>
@@ -27,10 +31,10 @@
 
         <div class="container m-2">
             <% if (@user.is_cook) %>
-
                 <div class="card p-4" id="user_container">
 
                     <h2 class="fw-bold ms-1 fw-bold text-center">Your Delish Meals</h2>
+
                     <br>
                     <%if(@user.meals.count == 0) %>
                         <p>You don't have any meals yet!</p>
@@ -65,12 +69,38 @@
                     <div class=" d-flex flex-column justify-content-center">
                         <h2 class="mt-4 fw-bold text-center">Your Reviews</h2>
                     </div>
-                    <% if @user.reviews.count == 0%>
-                     <p class="text-center mt-2">You don't have any reviews yet!</p>
-                    <% else %>
-                    <%@reviews = @user.reviews%>
+
+                     
+                     <%@approved_reviews = @user.reviews.select{|x| x.is_approved}%>
+                     <%@pending_reviews = @user.reviews.select{|x| !x.is_approved}%>
+
                     <div class="row row-cols-2 ms-3 justify-content-center">
-                        <% @reviews.each do |review| %>
+                        <p>Approved Reviews</p>
+                        <% @approved_reviews.each do |review| %>
+                            <div class="card col m-3 py-3" style="width: 40em">
+                                <div class="card-body">
+                                    <h4 class="card-title fw-bold"><a href="<%=meal_path(review.meal)%>" class="text-dark"><%= review.meal.title%></a></h4>
+                                    <hr>
+                                    <span><strong>Rating: </strong>
+                                        <%review.rating.times do %>
+                                            ★
+                                        <% end %>
+                                    </span>
+                                    <p class="card-text text-truncate"><%= review.body%></p>
+                                    <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Posted at <%= review.created_at%> </small>
+                                    <% if can? :crud, review %>
+                                        <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-sm btn-outline-dark me-2 mx-1"%>
+                                    <% end %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                    
+                    
+
+                    <div class="row row-cols-2 ms-3 justify-content-center">
+                        <p>Pending Reviews</p>
+                        <% @pending_reviews.each do |review| %>
                             <div class="card col m-3 py-3" style="width: 40em">
                                 <div class="card-body">
                                     <h4 class="card-title fw-bold"><a href="<%=meal_path(review.meal)%>" class="text-dark"><%= review.meal.title%></a></h4>
