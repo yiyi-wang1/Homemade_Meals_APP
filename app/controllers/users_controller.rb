@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :get_user, except: [:new, :create]
-    before_action :authenticate_user!, only: [:admin_panel]
-    before_action :authorize_user!, only: [:admin_panel]
+    before_action :authenticate_user!, only: [:admin_panel, :edit, :update]
+    before_action :authorize_user!, only: [:admin_panel, :edit]
     
     def new
         @user = User.new
@@ -30,6 +30,18 @@ class UsersController < ApplicationController
 
     def admin_panel
 
+    end
+
+    def edit
+
+    end
+  
+    def update
+      if @user.update(params.require(:user).permit(:username, :email, :profile_img_url))
+        redirect_to user_path(@user)
+      else
+        render :edit
+      end
     end
     
     private

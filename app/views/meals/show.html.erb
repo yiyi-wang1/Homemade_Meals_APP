@@ -26,7 +26,7 @@
                             <strong>Ingredients:</strong>
                             <br>
                             <% @meal.ingredients.each do |ingredient| %>
-                            <%= link_to(ingredient.name, ingredient_path(ingredient), class:'badge rounded-pill bg-primary')%>
+                            <%= link_to(ingredient.name, ingredient_path(ingredient), class:'badge rounded-pill bg-secondary')%>
                             <%end%>
                         </small>
                         <% end %>
