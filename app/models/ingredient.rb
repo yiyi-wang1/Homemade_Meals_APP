@@ -1,13 +1,13 @@
 class Ingredient < ApplicationRecord
-    before_validation :capitalize_first
+    before_save :downcase_name
     has_many :ingredientings, dependent: :destroy
     has_many :meals, through: :ingredientings, source: :meal
 
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: {case_sensitive: false}
 
     private
-    def capitalize_first
-        self.name&.capitalize!
+    def downcase_name
+        self.name = self.name&.downcase
     end
     
 end
