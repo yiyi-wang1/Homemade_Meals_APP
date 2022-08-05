@@ -16,7 +16,8 @@
                 <% else %>
                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
                 <% end %>
-                <div id="user_profile_infomation">
+
+                <div id="user_profile_infomation" class="mt-3">
                     <p><strong>Name: </strong><%=@user.username%></p>
                     <p><strong>Email: </strong><%=@user.email%></p>
                     <% if @user.is_cook %>
@@ -31,8 +32,9 @@
                     <% if(@user.reviews) %>
                         <p><strong>Reviews Number: </strong><%=@user.reviews.count%></p>
                     <% end %>
+                     <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class: "btn btn-dark mt-3 w-100"%>
                     <% if (@user.is_cook)%>
-                    <%= button_to "Create a New Meal", new_meal_path, method: :get, class: "btn btn-dark my-3"%>
+                    <%= button_to "Create a New Meal", new_meal_path, method: :get, class: "btn btn-dark my-3 w-100"%>
                     <% end %>
                     <%= link_to "#{Notification.unread_count(current_user)} Notifications", notifications_path%>
                 </div>
