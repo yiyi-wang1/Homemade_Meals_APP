@@ -10,6 +10,7 @@
 User.destroy_all
 Meal.destroy_all
 Review.destroy_all
+Order.destroy_all
 
 DEFAULT_PASSWORD = "123"
 INGREDIENTSARR = ["Bacon", "Beef fat", "Butter", "Chicken fat", "Cocoa butter", "Coconut or coconut oil", "Hydrogenated fats and oils", "Lard", "Palm or palm kernel oil", "Baking powder", "Baking soda", "Brine", "Celery salt", "Garlic salt", "Brown sugar", "Cane juice extract", "Corn syrup", "Honey", "Invert sugar", "Lactose", "Liquid sugar", "Maltos", "Chicken", "Pork", "Lamb", "Shrimp", "Fish", "Peanut", "Bea", "Banana", "Apple", "Ginger"]
