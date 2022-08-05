@@ -41,8 +41,13 @@
             </form>
             </div>
 
+
+
+
             <div class="collapse navbar-collapse" id="navtoggler" >
+              <%= render 'searches/form' %>
               <ul class="navbar-nav" style="width: 20em">
+
                 <% if user_signed_in? %>
                 <li class="nav-item m-1">
                   <a class="nav-link text-dark" href="<%= meals_path %>">Meals</a>

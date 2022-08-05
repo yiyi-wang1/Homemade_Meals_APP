@@ -7,6 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
+
+Order.destroy_all
+
 User.destroy_all
 Meal.destroy_all
 Review.destroy_all
