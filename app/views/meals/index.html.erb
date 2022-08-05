@@ -7,7 +7,8 @@
                 <%= image_tag cook.profile_img_url, class:"card-img-top" %>
                 <div class="card-body">
                     <h5 class="card-title text-dark"><%= link_to cook.username, user_path(cook), class:"text-dark fw-bold text-capitalize"%></h5>
-                    <p>Rating: <%= "★" * cook.cook_rating %> </p>
+                    <p>Rating: <%= cook.cook_rating %></p>
+                    <p class="starability-result" data-rating="<%= cook.cook_rating.to_i %>">Rating: </p>
                 </div>
             </div>
         <% end %> 
@@ -28,7 +29,10 @@
                          <p class="text-dark">Cook: <%= link_to meal.user.username, user_path(meal.user), class:"text-dark"%></p>
                         </div>
                         <div >
-                         <p class="fw-bold">Rating: <%= "★" * meal.reviews.average(:rating) %> </p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p class="starability-result me-2" data-rating="<%= meal.reviews.average(:rating).to_i %>"></p>
+                            <p><%=meal.reviews.count%> reviews</p>
+                        </div>
                         <p><%= meal.description %></p>
                         <p class="fw-bold"><%= number_to_currency(meal.price, precision: 2)%></p>
                         </div>
