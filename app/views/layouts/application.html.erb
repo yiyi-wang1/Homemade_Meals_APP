@@ -77,11 +77,17 @@
       </div>
 
       <div class="container">
-      <% flash.each do |type, message| %>
-      <div class="alert alert-info" role="alert">
-        <%= type + "------" + message %>
-      </div>
-    <% end %>
+        <% flash.each do |type, message| %>
+              <% if type == "notice"%>
+                <div class="alert alert-info mx-3" role="alert">
+                  <%= message %>
+                </div>
+              <% else %>
+                  <div class="alert alert-danger mx-3" role="alert">
+                  <%= message %>
+                </div>
+              <% end %>
+            <% end %>
       </div>
 
     <%= yield %>
