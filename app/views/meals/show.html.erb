@@ -15,7 +15,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item px-0 text-secondary">Ingredients: <%= @meal.ingredients %></li>
                 <li class="list-group-item px-0 text-secondary">Cook: <%= @meal.user.username %></li> <%# this could link to user show page of the cook #%> 
-                <li class="list-group-item px-0">Price: <%= @meal.price %></li>
+                <li class="list-group-item px-0">Price: $<%= @meal.price %></li>
             </ul>
             <a href="<%=new_meal_order_path(@meal)%>" class="btn btn-warning mt-3">Order Now</a>
                 </div>
