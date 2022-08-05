@@ -1,9 +1,5 @@
-<div class="container mt-5">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-6 col-lg-4">
-                <div class="card-body pe-md-0">
-                    <div class="show-image-container ">
+<div class="row mx-5 my-5">
+    <div class="show-image-container col-5 offset-1 me-3">
         <%= image_tag @meal.img_url, class:"show-image" %>
     </div>
     <div class="card col-5 ms-3">
@@ -24,9 +20,9 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-md-10 offset-md-1 mt-5 p-3">
-            <h3>Leave a Review</h3>
+    <div class="col-10 offset-1 mt-5">
+        <h3>Leave a Review</h3>
+        
         <% if @review.errors.any? %> 
             <% @review.errors.full_messages.each do |msg| %> 
                 <p><%= msg %> </p>
@@ -48,11 +44,11 @@
                 <br>
                 <%= form.text_area :body, cols: 50, rows: 5, class: "form-control" %>
             </div>
-            <%= form.submit class: "btn btn-dark"%>
+            <%= form.submit class: "btn btn-info mb-3"%>
         <% end %>
     </div>
 
-    <div class="col-md-10 offset-md-1 mb-3 p-3">
+    <div class="col-10 offset-1 mt-5">
         <h3>All Reviews</h3>
         <% @reviews.each do |review|%>
             <% if(review.is_approved) %>
@@ -74,5 +70,5 @@
 
         <% end %> 
     </div>
-</div>
+
 </div>
