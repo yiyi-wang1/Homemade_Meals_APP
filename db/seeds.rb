@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-
-
+Ingredienting.destroy_all
+Ingredient.destroy_all
 Order.destroy_all
 User.destroy_all
 Meal.destroy_all
@@ -76,12 +76,22 @@ end
 
 users = User.all
 
+
+
+INGREDIENT_NUM = 20
+INGREDIENT_NUM.times do
+    Ingredient.create(
+        name: Faker::Food.ingredient
+    )
+end
+ingredients = Ingredient.all
+
+
 40.times do |n|
     
     meal = Meal.create(
         title: Faker::Food.dish,
         description: Faker::Food.description,
-        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(", "), # added a space after comma in join
         img_url: "https://loremflickr.com/640/640/meals?random=#{n + 1}",
         price: Faker::Commerce.price,
         user: users.sample
@@ -98,6 +108,7 @@ users = User.all
                 is_approved: true
             )
         end
+        meal.ingredients = ingredients.shuffle.slice(0, rand(ingredients.count)) 
     end
 end
 

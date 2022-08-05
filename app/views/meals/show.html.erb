@@ -20,11 +20,16 @@
 					</div>
                     <div class="mb-3"><%= @meal.description %></div>
                     <div class="mb-3">
-						<small>
-							<strong>Ingredients:</strong>
-							<br>
-							<%= @meal.ingredients %>
-						</small>
+
+                        <% unless @meal.ingredients.empty? %>
+                        <small>
+                            <strong>Ingredients:</strong>
+                            <br>
+                            <% @meal.ingredients.each do |ingredient| %>
+                            <%= link_to(ingredient.name, meals_path(ingredient: ingredient.name), class:'badge rounded-pill bg-primary')%>
+                            <%end%>
+                        </small>
+                        <% end %>
 					</div>
                 <a href="<%=new_meal_order_path(@meal)%>" class="btn btn-warning">Order Now</a>
               </div>
