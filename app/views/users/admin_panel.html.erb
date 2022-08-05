@@ -19,6 +19,12 @@
                 <div id="user_profile_infomation">
                     <p><strong>Name: </strong><%=@user.username%></p>
                     <p><strong>Email: </strong><%=@user.email%></p>
+                    <% if @user.is_cook %>
+                    <p><strong>User Type: </strong>Cook</p>
+                    
+                    <% else%>
+                    <p><strong>User Type: </strong>Customer</p>
+                    <% end %>
                     <% if(@user.meals) %>
                         <p><strong>Meals Number: </strong><%=@user.meals.count%></p>
                     <% end %>
@@ -45,7 +51,7 @@
                             <p>You don't have any meals yet!</p>
                             <%= button_to "Create Your First Meal Now!", new_meal_path, method: :get, class: "btn btn-outline-dark my-3"%>
                         <% else %>
-                        <%# -----------------If the cook meals -------------- %>
+                        <%# -----------------If the cook have meals -------------- %>
                             <div class="d-flex flex-wrap justify-content-center">
 
                             <%@meals = @user.meals%>
@@ -78,10 +84,12 @@
                         <div class=" d-flex flex-column justify-content-center">
                             <h2 class="mt-4 fw-bold text-center">Your Reviews</h2>
                         </div>
-
+                        <% if @user.reviews.count == 0%>
+                        <p class="text-center m-3">You don't have any reviews yet!</p>
+                        <% end %>
                         <%@approved_reviews = @user.reviews.select{|x| x.is_approved}%>
                         <%@pending_reviews = @user.reviews.select{|x| !x.is_approved}%>
-
+                        <% if @approved_reviews.count > 0 %>
                         <div class="row row-cols-2 ms-3 justify-content-center">
                             <p class="text-center fw-bold m-0">Approved</p>
                             <% @approved_reviews.each do |review| %>
@@ -93,7 +101,7 @@
                                             <p class="starability-result" data-rating="<%= review.rating %>"></p>
                                         </span>
                                         <p class="card-text text-truncate"><%= review.body%></p>
-                                        <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Posted at <%= review.created_at%> </small>
+                                        <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Posted at <%= review.created_at.strftime("%Y-%m-%d")%> </small>
                                         <% if can? :crud, review %>
                                             <%= button_to "Delete", meal_review_path(review.meal, review), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-sm btn-outline-dark me-2 mx-1"%>
                                         <% end %>
@@ -101,9 +109,11 @@
                                 </div>
                             <% end %>
                         </div>
-                        
-                        
 
+                        <% end %>
+                        
+                        
+                        <% if @pending_reviews.count > 0 %>
                         <div class="row row-cols-2 ms-3 justify-content-center">
                             <p class="text-center fw-bold m-0">Pending Approval</p>
                             <% @pending_reviews.each do |review| %>
@@ -123,6 +133,7 @@
                                 </div>
                             <% end %>
                         </div>
+                        <% end %>
 
                         
                     </div>
