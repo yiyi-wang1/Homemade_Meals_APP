@@ -19,7 +19,7 @@
                 <% if(@user.reviews) %>
                     <p><strong>Reviews Number: </strong><%=@user.reviews.count%></p>
                 <% end %>
-                <% if @user.is_cook%>
+                <% if (@user.is_cook)%>
                 <%= button_to "Create a New Meal", new_meal_path, method: :get, class: "btn btn-dark my-3"%>
                 <% end %>
             </div>
@@ -62,8 +62,10 @@
                     <div class=" d-flex flex-column justify-content-center">
                         <h2 class="mt-4 fw-bold text-center">Your Reviews</h2>
                     </div>
+                     
                      <%@approved_reviews = @user.reviews.select{|x| x.is_approved}%>
                      <%@pending_reviews = @user.reviews.select{|x| !x.is_approved}%>
+
                     <div class="row row-cols-2 ms-3 justify-content-center">
                         <p>Approved Reviews</p>
                         <% @approved_reviews.each do |review| %>
@@ -87,9 +89,9 @@
                     </div>
                     
                     
-                   <div class="row row-cols-2 ms-3 justify-content-center">
+                    <div class="row row-cols-2 ms-3 justify-content-center">
                         <p>Pending Reviews</p>
-                        <% @pending_reviews do |review| %>
+                        <% @pending_reviews.each do |review| %>
                             <div class="card col m-3 py-3" style="width: 40em">
                                 <div class="card-body">
                                     <h4 class="card-title fw-bold"><a href="<%=meal_path(review.meal)%>" class="text-dark"><%= review.meal.title%></a></h4>
@@ -108,8 +110,6 @@
                             </div>
                         <% end %>
                     </div>
-                    
-                    
                 </div>
 
                 <div class="container d-flex flex-column card">
