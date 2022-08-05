@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :orders, only:[:create, :new]
   end
   root "welcome#index"
-  resources :users, only:[:create, :new, :show]
+  resources :users, only:[:create, :new, :show, :edit, :update]
   resource :session, only: [:new, :create, :destroy]
   get 'users/:id/admin_panel', to: 'users#admin_panel', as: :show_admin_panel_user
 
