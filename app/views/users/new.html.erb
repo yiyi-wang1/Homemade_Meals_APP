@@ -8,7 +8,11 @@
         <div class="container col-12 col-md-9 col-lg-7 col-xl-6 pb-0">
           <div class="card m-4" style="">
             <div class="card-body px-5 pt-5">
-                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                <%if @user.id %>
+                  <h2 class="text-uppercase text-center mb-5">Update your account</h2>
+                <% else %>
+                  <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                <% end %>
                     <% if @user.errors.any? %>
                         <p> <%= @user.errors.full_messages.join(',') %> </p>
                     <% end %>
