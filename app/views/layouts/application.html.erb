@@ -28,10 +28,12 @@
               <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo', style:"width: 3rem"%> 
               </a>
               <a class="navbar-brand fw-bold fw-bold" href="<%= main_app.root_path %>">Delish</a>
+
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggler" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
+
             <%# Search bar %>
             <div class="container mr-5">
               <%= render 'searches/form' %>
