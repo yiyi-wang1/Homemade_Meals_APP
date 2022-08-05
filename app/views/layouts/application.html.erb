@@ -34,13 +34,13 @@
             <span class="navbar-toggler-icon"></span>
             </button>
 
-            <%# Search bar %>
-            <div class="container mr-5">
-              <%= render 'searches/form' %>
-            </div>
+
 
             <div class="collapse navbar-collapse" id="navtoggler" >
-              
+            <%# Search bar %>
+            <div class="container mr-5" style="width: 25em">
+              <%= render 'searches/form' %>
+            </div>
               <ul class="navbar-nav" style="width: 20em">
               
                 <% if user_signed_in? %>
