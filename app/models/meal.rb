@@ -17,7 +17,7 @@ class Meal < ApplicationRecord
 
     def ingredient_names=(rhs)
         self.ingredients = rhs.strip.split(/\s*,\s*/).map do |ingredient_name|
-            Ingredient.find_or_create_by(name: ingredient_name)
+            Ingredient.find_or_create_by(name: ingredient_name.downcase)
         end
     end
 
