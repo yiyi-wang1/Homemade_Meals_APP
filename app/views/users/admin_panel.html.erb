@@ -11,8 +11,11 @@
 
 
             <div class="card p-4 m-2" id="user_profile_container" style="width: 20em;">
-                <img src="<%= @user.profile_img_url%>" >
-
+                <% if !(@user.profile_img_url).empty? %>
+                    <img src="<%= @user.profile_img_url%>">
+                <% else %>
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+                <% end %>
                 <div id="user_profile_infomation">
                     <p><strong>Name: </strong><%=@user.username%></p>
                     <p><strong>Email: </strong><%=@user.email%></p>
@@ -87,9 +90,7 @@
                                         <h4 class="card-title fw-bold"><a href="<%=meal_path(review.meal)%>" class="text-dark"><%= review.meal.title%></a></h4>
                                         <hr>
                                         <span><strong>Rating: </strong>
-                                            <%review.rating.times do %>
-                                                ★
-                                            <% end %>
+                                            <p class="starability-result" data-rating="<%= review.rating %>"></p>
                                         </span>
                                         <p class="card-text text-truncate"><%= review.body%></p>
                                         <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;"> Posted at <%= review.created_at%> </small>
@@ -111,9 +112,7 @@
                                         <h4 class="card-title fw-bold"><a href="<%=meal_path(review.meal)%>" class="text-dark"><%= review.meal.title%></a></h4>
                                         <hr>
                                         <span><strong>Rating: </strong>
-                                            <%review.rating.times do %>
-                                                ★
-                                            <% end %>
+                                            <p class="starability-result" data-rating="<%= review.rating %>"></p>
                                         </span>
                                         <p class="card-text text-truncate"><%= review.body%></p>
                                         <span class="d-flex flex-row align-items-end"><small style="font-size: 12px;">Posted on <%= review.created_at.strftime("%Y-%m-%d")%> </small>
