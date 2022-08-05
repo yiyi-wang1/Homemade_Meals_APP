@@ -10,7 +10,7 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Ingredients: <%= @meal.ingredients %></li>
-                <li class="list-group-item">Price: <%= @meal.price %></li>
+                <li class="list-group-item">Price: <%= number_to_currency(@meal.price, precision: 2) %></li>
                 <li class="list-group-item">Cook: <%= @meal.user.username %></li> <%# this could link to user show page of the cook #%> 
               </ul>
               <div class="card-body">
@@ -63,7 +63,7 @@
                         <p>Review: <%= review.body %></p>
                         <p>By: <%= review.user.username %></p>
                         <p class="text-muted mb-4"><small>Posted <%= time_ago_in_words(review.created_at) %> ago </small></p>
-                        <%= button_to "Approve", meal_review_path(@meal, review), method: :patch%>
+                        <%= button_to "Approve", meal_review_path(@meal, review), method: :patch, class:"btn btn-dark"%>
                     <% end %>
                 </div>
             <% end %>
