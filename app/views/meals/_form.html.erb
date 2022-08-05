@@ -58,7 +58,7 @@
         $('#meal_ingredient_name').selectize({
             delimeter: ",",
             persist: false,
-            labelField: "name", //Column name in database
+            labelField: "name",
             valueField: "name",
             searchField: "name",
             options: <% Ingredient.select(:name).to_json(except: [:id]).html_safe %>,
