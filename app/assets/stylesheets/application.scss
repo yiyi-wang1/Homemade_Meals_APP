@@ -106,3 +106,47 @@ a {
    border: 1px solid lightgrey;
    border-radius: 5px;
 }
+
+.my-card {
+   height: 20em;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   border: 0ch;
+   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+   
+}
+
+.my-card-img {
+   flex-shrink: 0;
+   min-width: 100%;
+   min-height: 100%;
+   object-fit: cover;
+   overflow: hidden;
+   //opacity: 70%;
+   
+
+}
+
+.cook-card-title{
+   font-size: 2em;
+   font-weight:bolder;
+}
+
+.index-cooks-container {
+   background-color: #F5BD23;
+   border-radius: 2em;
+   height: fit-content;
+   padding: 2em;
+}
+
+.top-title{
+   font-size: 1.8em;
+   margin-bottom: 1em;
+  
+}
+
+.float-text {
+   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}

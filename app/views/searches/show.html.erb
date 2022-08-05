@@ -1,5 +1,7 @@
+
 <h1 class="text-center mb-3"><%= pluralize(@meals.count, "Result") %> with "<%=@keyword%>"</h1>
 <div class="flex-container mx-5 d-flex justify-content-center ">
+
     <% @meals.each do |meal| %>
         <div class="item-container ">
                 <div class="card mb-3 index-card h-100">
