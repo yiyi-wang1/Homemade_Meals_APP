@@ -9,6 +9,7 @@
 
 
 Order.destroy_all
+
 User.destroy_all
 Meal.destroy_all
 Review.destroy_all
@@ -62,13 +63,6 @@ CUSTOMER_IMAGES = [
     'https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80',#20
 ]
 
-MEALS_IMAGES = [
-    
-]
-
-
-
-
 20.times do |n|
     username = Faker::Name.first_name
     User.create(
@@ -87,8 +81,8 @@ users = User.all
     meal = Meal.create(
         title: Faker::Food.dish,
         description: Faker::Food.description,
-        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(" ,"),
-        img_url: "https://picsum.photos/200",
+        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(","),
+        img_url: "https://loremflickr.com/640/640/meals?random=#{n + 1}",
         price: Faker::Commerce.price,
         user: users.sample
     )
