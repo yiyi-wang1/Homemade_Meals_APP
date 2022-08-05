@@ -24,28 +24,18 @@
            <div class="container-fluid d-flex p-0">
 
             <div class="container">
-              <a class="m-3" alt="brand-logo" href="<%= root_path %>">
-              <%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo', style:"width: 3rem"%> 
-              </a>
+              <a class="m-3" alt="brand-logo" href="<%= root_path %>"><%= image_tag "https://cdn-icons-png.flaticon.com/512/1249/1249623.png?w=740&t=st=1659576712~exp=1659577312~hmac=dc34fb451a33ca2ac4436539d1286c344439758b06b7303f091b97e646e43b0a", id: 'logo', style:"width: 3rem"%></a>
               <a class="navbar-brand fw-bold fw-bold" href="<%= root_path %>">Delish</a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtoggler" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <%# Search bar %>
-            <div class="container mr-5">
-              <form class="form-inline my-2 my-lg-0 d-flex flex-row">
-              <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search" aria-label="Search" style="width: 15em">
-              <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            </div>
-
-
-
-
             <div class="collapse navbar-collapse" id="navtoggler" >
+            <div class="container mr-5">
+            <%# Search bar %>
               <%= render 'searches/form' %>
+              </div>
               <ul class="navbar-nav" style="width: 20em">
 
                 <% if user_signed_in? %>
