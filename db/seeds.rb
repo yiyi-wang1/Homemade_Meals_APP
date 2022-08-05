@@ -81,7 +81,7 @@ users = User.all
     meal = Meal.create(
         title: Faker::Food.dish,
         description: Faker::Food.description,
-        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(","),
+        ingredients: INGREDIENTSARR.sample(rand(2..10)).join(", "), # added a space after comma in join
         img_url: "https://loremflickr.com/640/640/meals?random=#{n + 1}",
         price: Faker::Commerce.price,
         user: users.sample
