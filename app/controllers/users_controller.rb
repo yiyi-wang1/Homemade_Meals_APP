@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   
     def update
       if @user.update(params.require(:user).permit(:username, :email, :profile_img_url))
-        redirect_to user_path(@user)
+        redirect_to show_admin_panel_user_path(@user)
       else
         render :edit
       end

@@ -150,3 +150,8 @@ a {
 .float-text {
    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
 }
+
+.no-hover:hover {
+   color: white;
+   background-color: black !important;
+}

@@ -1,5 +1,5 @@
 class MealsController < ApplicationController
-before_action :find_meal, only: [:edit, :update]
+before_action :find_meal, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:show, :index]
 before_action :authorize_user!, only: [:edit, :update, :destroy]
 before_action :can_cook?, only: [:new, :create]
@@ -12,7 +12,7 @@ before_action :can_cook?, only: [:new, :create]
     @meal = Meal.new(meal_params)
     @meal.user = current_user
     if @meal.save
-      flash[:success]= "Meal created successfully!"
+      flash[:notice]= "Meal created successfully!"
       redirect_to meal_path(@meal)
     else
       render :new
@@ -29,7 +29,6 @@ before_action :can_cook?, only: [:new, :create]
   end
 
   def show
-    @meal = Meal.find params[:id]
     @reviews = @meal.reviews.order(created_at: :desc)
     @review = Review.new
   end
@@ -39,6 +38,7 @@ before_action :can_cook?, only: [:new, :create]
 
   def update
     if @meal.update(meal_params)
+      flash[:notice]= "Meal updated successfully!"
       redirect_to meal_path(@meal)
     else
       render :edit
@@ -46,9 +46,9 @@ before_action :can_cook?, only: [:new, :create]
   end
 
   def destroy
-      @meal = Meal.find params[:id]
+      
       @meal.destroy
-      redirect_to meals_path, notice: "Meal Deleted" # should probably redirect to cook admin panel page
+      redirect_to show_admin_panel_user_path(current_user), notice: "Meal Deleted" # should probably redirect to cook admin panel page
   end
 
   private

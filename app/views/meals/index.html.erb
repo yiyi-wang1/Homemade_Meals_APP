@@ -30,7 +30,8 @@
                         <div >
                         <div class="d-flex justify-content-center align-items-center">
                             <p class="starability-result me-2" data-rating="<%= meal.reviews.average(:rating).to_i %>"></p>
-                            <p><%=meal.reviews.count%> reviews</p>
+                            
+                            <p><%= pluralize(meal.reviews.count, "review") %></p>
                         </div>
                         <p><%= meal.description %></p>
                         <p class="fw-bold"><%= number_to_currency(meal.price, precision: 2)%></p>

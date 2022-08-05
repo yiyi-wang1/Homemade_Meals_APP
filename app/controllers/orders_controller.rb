@@ -11,10 +11,10 @@ class OrdersController < ApplicationController
         @order.meal = @meal
 
         if @order.save
-            flash[:notice] = "Order created successfully!"
+            flash[:notice] = "Order placed successfully!"
             redirect_to show_admin_panel_user_path(current_user)
         else
-            flash[:alert] = "Cannot create order!"
+            flash[:alert] = "Cannot place order!"
             render "/orders/new", status: 303
         end
 

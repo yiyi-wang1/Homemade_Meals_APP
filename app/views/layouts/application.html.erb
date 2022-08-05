@@ -41,7 +41,7 @@
             <div class="container mr-5" style="width: 25em">
               <%= render 'searches/form' %>
             </div>
-              <ul class="navbar-nav" style="width: 20em">
+              <ul class="navbar-nav d-flex flex-row align-items-baseline" style="width: 20em">
               
                 <% if user_signed_in? %>
                 <li class="nav-item m-1">
@@ -63,6 +63,9 @@
               </li>
                 <% else %>
                 <%# Sign In & Sign Up %>
+                <li class="nav-item m-1">
+                  <a class="nav-link text-dark fw-bold" href="<%= main_app.meals_path %>">Meals</a>
+                </li>
                 <li class="nav-item">
                     <a class="btn btn-light-outline nav-link text-dark fw-bold" href="<%= main_app.new_session_path %>">Sign In</a>
                 </li>
@@ -79,11 +82,11 @@
       <div class="container">
         <% flash.each do |type, message| %>
               <% if type == "notice"%>
-                <div class="alert alert-info mx-3" role="alert">
+                <div class="alert alert-info" role="alert">
                   <%= message %>
                 </div>
               <% else %>
-                  <div class="alert alert-danger mx-3" role="alert">
+                  <div class="alert alert-danger" role="alert">
                   <%= message %>
                 </div>
               <% end %>

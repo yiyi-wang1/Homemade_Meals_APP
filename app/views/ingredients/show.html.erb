@@ -1,5 +1,6 @@
-<h1 class="text-center mb-3"><%= pluralize(@meals.count, "Result") %> with ingredient "<%=@ingredient.name%>"</h1>
-<div class="flex-container mx-5">
+<div class="container">
+<h1 class="text-center my-5"><%= pluralize(@meals.count, "Result") %> with ingredient "<%=@ingredient.name%>"</h1>
+<div class="flex-container justify-content-center mx-5">
     <% @meals.each do |meal| %>
         <div class="item-container">
                 <div class="card mb-3 index-card">
@@ -17,7 +18,7 @@
                                     <strong>Ingredients:</strong>
                                     <br>
                                     <% meal.ingredients.each do |ingredient| %>
-                                    <%= link_to(ingredient.name, ingredient_path(ingredient), class:'badge rounded-pill bg-primary')%>
+                                    <%= link_to(ingredient.name, ingredient_path(ingredient), class:'badge rounded-pill bg-secondary no-hover')%>
                                     <%end%>
                                 </small>
                             <% end %>
@@ -26,4 +27,5 @@
                 </div>
         </div>
     <% end %>  
+</div>
 </div>
